@@ -1,19 +1,19 @@
 :root {
-    /* .container-itens */
-    --total-itens-width: 78vw;
-    --itens-in-a-row: 4;
-    --itens-image-ratio: calc(3 / 4);    /*    3:4 ratio    */
-    --itens-margin: 0.8vw;
-    --single-item-width: calc(calc(var(--total-itens-width) / var(--itens-in-a-row)) - calc(var(--itens-margin) * 2));
-    --single-item-height: calc(var(--single-item-width) / var(--itens-image-ratio));
-    --width-left-around-itens: calc(100vw - var(--total-itens-width));
+    /* .container-items */
+    --total-items-width: 78vw;
+    --items-in-a-row: 4;
+    --items-image-ratio: calc(3 / 4);    /*    3:4 ratio    */
+    --items-margin: 0.8vw;
+    --single-item-width: calc(calc(var(--total-items-width) / var(--items-in-a-row)) - calc(var(--items-margin) * 2));
+    --single-item-height: calc(var(--single-item-width) / var(--items-image-ratio));
+    --width-left-around-items: calc(100vw - var(--total-items-width));
 
     /* .containter-icons */
     --icon-size-square: 5vw;
     --icon-minsize-square: 3em;
     --total-space-between-icons: 2.5vw;
     --number-of-icons: 3;
-    --width-left-around-icons: calc(calc(var(--width-left-around-itens) / 2) - var(--icon-size-square)); /* 22 / 2 - 5 = 6vw */
+    --width-left-around-icons: calc(calc(var(--width-left-around-items) / 2) - var(--icon-size-square)); /* 22 / 2 - 5 = 6vw */
     --icon-leftright-margins: calc(var(--width-left-around-icons) / 2); /* 6 / 2 = 3vw */
     --container-icons-height: calc(var(--total-space-between-icons) + calc(var(--icon-minsize-square) * var(--number-of-icons)) );
 }
@@ -22,7 +22,7 @@ body {
     margin: 3em 0 2em 0;
 }
 
-/* -------------------------------------- */
+/* ------------------     HEADER     -------------------- */
 
 #header {
     /* JS: APARECER SOMENTE QUANDO NÃO ESTIVER NA POSIÇÃO Y=0 */
@@ -66,7 +66,7 @@ body {
     width: auto;
 }
 
-/* -------------------------------------- */
+/* ------------------     TITLE AND SUBTITLE     -------------------- */
 
 #main-title {
     font-family: 'Nothing You Could Do', cursive;
@@ -83,65 +83,34 @@ body {
     margin-bottom: 6.5vw;
 }
 
-/* -------------------------------------- */
+/* ------------------     ITEMS     -------------------- */
 
-.container-itens {
+.container-items {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    width: var(--total-itens-width);
+    width: var(--total-items-width);
     margin: auto;
 }
 
-.container-itens div {
+.container-items div {
     width: var(--single-item-width);
     height: var(--single-item-height);
-    margin: var(--itens-margin);
+    margin: var(--items-margin);
     z-index: 0;
 }
 
-.container-itens div:hover {
+.container-items div:hover {
     transform: scale(1.05);
 }
 
-.container-itens div img {
+.container-items div img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* -------------------------------------- */
-
-.container-4-pics {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.container-2-pics {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.item {
-    width: 225px;
-    height: 300px;
-    margin: 10px;
-    z-index: 0;
-}   
-
-.item:hover {
-    transform: scale(1.05);
-}
-
-.item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* -------------------------------------- */
+/* ------------------     ICONS     -------------------- */
 
 #container-icons {
     display: flex;
@@ -155,7 +124,6 @@ body {
     min-height: calc(calc(var(--icon-minsize-square) * var(--number-of-icons)) + var(--total-space-between-icons));
     top: calc(50vh - calc(var(--container-icons-height) / 2)); /*  + var(--icon-size-square  */
     margin: 0 var(--icon-leftright-margins);
-    /* background-color: black; */
 }
 
 .icon {
@@ -174,69 +142,9 @@ body {
     position: relative;
     width: var(--icon-size-square);
     min-width: var(--icon-minsize-square);
-    /* height: auto; */
 }
 
 /* -------------------------------------- */
-
-/*
-#search-bar {
-    animation-name: hide-search-bar;
-    animation-duration: 500ms;
-}
-
-#search-bar input {
-    display: none;
-    width: 80%;
-    padding-left: 4%;
-    height: 50%;
-    border: none;
-    background-color: transparent;
-    border-radius: var(--icon-size-square);
-    font-size: 16px;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-#search-bar:hover {
-    JS: clicar no icone de busca (onclick) ativa a animação
-    animation-name: show-search-bar;
-    animation-duration: 500ms;
-    animation-fill-mode: forwards;
-}
-
-#search-bar:hover input{
-    display: inline;
-}
-
-input:focus {
-    outline: rgba(255,255,255,0);
-    JS: enquanto estiver em focus, manter search-bar aberta
-}
-
-@keyframes show-search-bar {
-    0% {
-        width: 100%;
-        border-radius: 50%;
-    }
-    100% {
-        border-radius: var(--icon-size-square);
-        width: 500%;
-        background: linear-gradient(90deg, rgba(255,255,255,0), white 80%);
-    }
-}
-
-JS: ACIONAR QUANDO O FOCUS SAIR DO INPUT
-@keyframes hide-search-bar {
-    0% {
-        border-radius: var(--icon-size-square);
-        width: 500%;
-        background: linear-gradient(90deg, rgba(255,255,255,0), white, white);
-    }
-    100% {
-        width: 100%;
-        border-radius: 50%;
-    }
-} */
 
 #logo {
     position: fixed;
