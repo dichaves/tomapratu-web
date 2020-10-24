@@ -1,7 +1,28 @@
-body {
-    margin-top: 60px;
-    margin-bottom: 30px;
+:root {
+    /* .container-itens */
+    --total-itens-width: 78vw;
+    --itens-in-a-row: 4;
+    --itens-image-ratio: calc(3 / 4);    /*    3:4 ratio    */
+    --itens-margin: 0.8vw;
+    --single-item-width: calc(calc(var(--total-itens-width) / var(--itens-in-a-row)) - calc(var(--itens-margin) * 2));
+    --single-item-height: calc(var(--single-item-width) / var(--itens-image-ratio));
+    --width-left-around-itens: calc(100vw - var(--total-itens-width));
+
+    /* .containter-icons */
+    --icon-size-square: 5vw;
+    --icon-minsize-square: 3em;
+    --total-space-between-icons: 2.5vw;
+    --number-of-icons: 3;
+    --width-left-around-icons: calc(calc(var(--width-left-around-itens) / 2) - var(--icon-size-square)); /* 22 / 2 - 5 = 6vw */
+    --icon-leftright-margins: calc(var(--width-left-around-icons) / 2); /* 6 / 2 = 3vw */
+    --container-icons-height: calc(var(--total-space-between-icons) + calc(var(--icon-minsize-square) * var(--number-of-icons)) );
 }
+
+body {
+    margin: 3em 0 2em 0;
+}
+
+/* -------------------------------------- */
 
 #header {
     /* JS: APARECER SOMENTE QUANDO NÃO ESTIVER NA POSIÇÃO Y=0 */
@@ -14,44 +35,82 @@ body {
     z-index: 1;
 }
 
-#header div {
+#search-bar {
+    --search-bar-width: 22em;
+    --search-input-leftright-padding: 0.5em;
+    --search-input-font-size: 1rem;
+    --search-button-size: calc(var(--search-input-font-size) + calc(var(--search-input-leftright-padding) * 2));
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2% 0; /* a width do header define sua altura pelo padding */
-    width: 350px;
+    font-size: var(--search-input-font-size);
+    width: var(--search-bar-width);
+    padding: 1.5em 0; /* define a altura do header que é = (padding top/bottom da searchbar * 2) + search-input-font-size + (padding top/bottom do input * 2) */
     margin: auto;
 }
 
-#header input {
-    font-size: 16px;
+#search-bar input {
+    font-size: 1em;
     font-family: 'Courier New', Courier, monospace;
-    width: 82.5%; /* 100 - 9.5 - 3 - 3 - 2 = 82 */
+    width: calc(calc(calc(var(--search-bar-width) - var(--search-button-size)) - calc(var(--search-input-leftright-padding) * 2)) - 0.5em); /* 0.5em é o espaço entre input e button */
     border: none;
-    border-radius: 20px;
+    border-radius: 1em;
     background-color: rgba(255,255,255,0.8);
-    padding: 2% 3%;
+    padding: 0.4em var(--search-input-leftright-padding);
+    margin: 0;
 }
 
-#header img {
-    width: 9.5%;
-    height: auto;
+#search-bar img {
+    height: var(--search-button-size);
+    width: auto;
 }
+
+/* -------------------------------------- */
 
 #main-title {
     font-family: 'Nothing You Could Do', cursive;
-    font-size: 50px;
+    font-size: 3.3em;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 0.3em;
 }
 
 #main-subtitle {
     font-family: 'Nanum Gothic', sans-serif;
-    font-size: 15px;
+    font-size: 0.9em;
     font-weight: 400;
     text-align: center;
-    margin-bottom: 65px;
+    margin-bottom: 6.5vw;
 }
+
+/* -------------------------------------- */
+
+.container-itens {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: var(--total-itens-width);
+    margin: auto;
+}
+
+.container-itens div {
+    width: var(--single-item-width);
+    height: var(--single-item-height);
+    margin: var(--itens-margin);
+    z-index: 0;
+}
+
+.container-itens div:hover {
+    transform: scale(1.05);
+}
+
+.container-itens div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* -------------------------------------- */
 
 .container-4-pics {
     display: flex;
@@ -82,9 +141,7 @@ body {
     object-fit: cover;
 }
 
-:root {
-    --icon-size-square: 10vmin;
-}
+/* -------------------------------------- */
 
 #container-icons {
     display: flex;
@@ -93,21 +150,20 @@ body {
     align-items: flex-start;
     position: fixed;
     width: var(--icon-size-square);
-    min-width: 50px;
-    height: calc(calc(var(--icon-size-square) * 3) + 5vmin);
-    min-height: calc(150px + 5vmin);
-    top: 40vh;
-    left: 4vw;
-    /* padding: 0px 10px; */
+    min-width: var(--icon-minsize-square);
+    height: calc(calc(var(--icon-size-square) * var(--number-of-icons)) + var(--total-space-between-icons));
+    min-height: calc(calc(var(--icon-minsize-square) * var(--number-of-icons)) + var(--total-space-between-icons));
+    top: calc(50vh - calc(var(--container-icons-height) / 2)); /*  + var(--icon-size-square  */
+    margin: 0 var(--icon-leftright-margins);
     /* background-color: black; */
 }
 
 .icon {
     display: flex;
-    justify-content: flex-end; /* MUDAR PARA CENTER */
+    justify-content: center;
     align-items: center;
     height: var(--icon-size-square);
-    min-height: 50px;
+    min-height: var(--icon-minsize-square);
     width: 100%;
     border-radius: 50%;
     background-color: #FFF;
@@ -117,10 +173,13 @@ body {
     display: block;
     position: relative;
     width: var(--icon-size-square);
-    min-width: 50px;
+    min-width: var(--icon-minsize-square);
     /* height: auto; */
 }
-/* 
+
+/* -------------------------------------- */
+
+/*
 #search-bar {
     animation-name: hide-search-bar;
     animation-duration: 500ms;
@@ -181,16 +240,17 @@ JS: ACIONAR QUANDO O FOCUS SAIR DO INPUT
 
 #logo {
     position: fixed;
-    right: 4%;
-    bottom: 4.5%;
-    height: 80px;
+    right: 3.25vw;
+    bottom: 3.25vw;
+    width: 4.5vw;
+    min-width: 2.5em;
 }
 
 #footer {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 12px;
+    font-size: 0.75em;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 8em;
 }
 
 /* --------------------------------- MOBILE --------------------------------- */
