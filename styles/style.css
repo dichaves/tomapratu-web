@@ -22,9 +22,13 @@ body {
     margin: 3em 0 2em 0;
 }
 
+input:focus {
+    outline: rgba(0,0,0,0);
+}
+
 /* ------------------     HEADER     -------------------- */
 
-#header {
+nav {
     /* JS: APARECER SOMENTE QUANDO NÃO ESTIVER NA POSIÇÃO Y=0 */
     display: none;
     position: fixed;
@@ -46,7 +50,7 @@ body {
     align-items: center;
     font-size: var(--search-input-font-size);
     width: var(--search-bar-width);
-    padding: 1.5em 0; /* define a altura do header que é = (padding top/bottom da searchbar * 2) + search-input-font-size + (padding top/bottom do input * 2) */
+    padding: 1.5em 0; /* define a altura do header que é +/- = (padding vertical da searchbar) + font-size do input + (padding vertical do input) */
     margin: auto;
 }
 
@@ -68,14 +72,14 @@ body {
 
 /* ------------------     TITLE AND SUBTITLE     -------------------- */
 
-#main-title {
+header h1 {
     font-family: 'Nothing You Could Do', cursive;
     font-size: 3.3em;
     text-align: center;
     margin-bottom: 0.3em;
 }
 
-#main-subtitle {
+header h2 {
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 0.9em;
     font-weight: 400;
@@ -93,18 +97,18 @@ body {
     margin: auto;
 }
 
-.container-items div {
+.container-items > div {
     width: var(--single-item-width);
     height: var(--single-item-height);
     margin: var(--items-margin);
     z-index: 0;
 }
 
-.container-items div:hover {
+.container-items > div:hover {
     transform: scale(1.05);
 }
 
-.container-items div img {
+.container-items > div > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
