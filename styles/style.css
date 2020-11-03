@@ -13,7 +13,7 @@
     --search-input-font-size: 1rem;
     --search-button-height: calc(var(--search-input-font-size) + calc(var(--search-input-leftright-padding) * 2));
 
-    /* .container-items */
+    /* #container-items */
     --total-items-width: 78vw;
     --items-in-a-row: 4;
     --items-image-ratio: calc(3 / 4);    /*    3:4 ratio    */
@@ -42,16 +42,38 @@ input:focus {
 
 /* ------------------     HEADER     -------------------- */
 
+/* Commented out the code which does the same thing as transition does, but with animation */
+
 nav {
-    /* JS: APARECER SOMENTE QUANDO NÃO ESTIVER NA POSIÇÃO Y=0 */
+    /* animation: show-search-nav 0.2s ease-out forwards; */
+    transition: top 0.2s ease;
     display: none;
     position: fixed;
     left: 0;
-    top: 0;
+    top: -5em;
     background-color: rgba(var(--search-nav-background-rgb), .5);
     width: 100vw;
     z-index: 1;
 }
+
+/* @keyframes show-search-nav {
+    from {
+        top: -5em;
+    }
+    to {
+        top: 0;
+    }
+}
+
+@keyframes hide-search-nav {
+    from {
+        top: 0;
+    }
+    to {
+        top: -5em;
+    }
+} */
+
 
 #search-bar {
     display: flex;
@@ -66,6 +88,7 @@ nav {
 #search-bar input {
     font-size: 1em;
     font-family: 'Courier New', Courier, monospace;
+    color: rgba(var(--purple-rgb));
     box-sizing: border-box;
     width: calc(calc(calc(var(--search-bar-width) - var(--search-button-height)) - calc(var(--search-input-leftright-padding) * 2)) - 0.5em); /* 0.5em é o espaço entre input e button */
     border: none;
@@ -85,7 +108,7 @@ nav {
 }
 
 #search-bar .fa-search {
-    color: rgba(var(--search-nav-background-rgb), .8);
+    color: rgba(var(--purple-rgb), 0.9);
     width: var(--search-input-font-size);
     height: auto;
 }
@@ -109,7 +132,7 @@ header h2 {
 
 /* ------------------     ITEMS     -------------------- */
 
-.container-items {
+#container-items {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -117,18 +140,18 @@ header h2 {
     margin: auto;
 }
 
-.container-items > div {
+#container-items > div {
     width: var(--single-item-width);
     height: var(--single-item-height);
     margin: var(--items-margin);
     z-index: 0;
 }
 
-.container-items > div:hover {
+#container-items > div:hover {
     transform: scale(1.05);
 }
 
-.container-items > div > img {
+#container-items > div > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
