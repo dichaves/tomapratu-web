@@ -3,9 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const searchNav = document.getElementsByTagName("nav")[0];
     const searchInput = document.getElementsByTagName("input")[0];
     const containerItems = document.getElementById("container-items");
+    const containerUpArrow = document.getElementById("container-up-arrow");
 
     var searchNavVisible = false;
-    window.onscroll = updateSearchNavVisibility;
+    window.addEventListener('scroll', updateSearchNavVisibility);
 
     function updateSearchNavVisibility() {
         var currentPosition = body.scrollTop;
@@ -13,9 +14,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (document.activeElement != searchInput) {
             if (currentPosition >= containerItemsPosition) {
-                if (!searchNavVisible) { showSearchNav(); }
+                if (!searchNavVisible) {
+                    showSearchNav();
+                    containerUpArrow.style.visibility = 'visible';
+                }
             } else {
-                if (searchNavVisible) { hideSearchNav(); }
+                if (searchNavVisible) {
+                    hideSearchNav();
+                    containerUpArrow.style.visibility = 'hidden';
+                }
             }
         }
     }
@@ -37,13 +44,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
-
-
-// // JQUERY
-// $(document).ready(function(){
-
-//     setTimeout(function() {
-//         $('nav').fadeOut('fast');
-//     }, 5000);
-
-// });
